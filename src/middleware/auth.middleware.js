@@ -7,7 +7,7 @@ const verifyAccessToken = async (req, res, next) => {
     if (!authHeader) {
          return res.status(401).json({
             error: true,
-            message: "No token Found"
+            message: "No token Found || Unauthorized"
         })
     }
 
@@ -16,7 +16,7 @@ const verifyAccessToken = async (req, res, next) => {
 
     try {
         //decoding to get payload
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);//verifying and decoding
         req.userId = decoded.userId;
         next();
     } catch (error) {
