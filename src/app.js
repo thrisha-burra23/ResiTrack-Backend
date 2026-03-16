@@ -17,7 +17,7 @@ app.get("/api/test",(req,res)=>{
     res.send("FE BE connected successfully!!")
 })
 app.use("/api/auth",authRouter)
-app.use("/api/complaint",complaintRouter)
+app.use("/api/complaints",complaintRouter)
 
 export default app
 
