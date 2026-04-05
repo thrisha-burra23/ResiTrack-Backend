@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+import User from "../models/user.model.js";
 
 const verifyAccessToken = async (req, res, next) => {
 
@@ -17,7 +18,9 @@ const verifyAccessToken = async (req, res, next) => {
     try {
         //decoding to get payload
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);//verifying and decoding
+        const user= await User.findById(decoded.userId).select("-password");
         req.userId = decoded.userId;
+        req.user=user;
         next();
     } catch (error) {
         console.log(error)

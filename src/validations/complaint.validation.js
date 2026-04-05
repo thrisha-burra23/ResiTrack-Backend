@@ -9,7 +9,7 @@ const complaintSchema = z.object({
     visibility: z.enum(["PUBLIC", "PRIVATE"], {
         required_error: "Visibility is required",
     }),
-    status: z.enum(["OPEN", "CLOSED", "ASSIGNED", "RESOLVED", "IN_PROGRESS"]).default("OPEN"),
+    // status: z.enum(["OPEN", "CLOSED", "ASSIGNED", "RESOLVED", "IN_PROGRESS"]).default("OPEN"),
     category: z.enum(["PLUMBING", "ELECTRICITY", "LIFT", "PARKING"], {
         required_error: "Category is required",
     })

@@ -42,7 +42,7 @@ const loginUser = async (req, res) => {
         const { email, password } = req.body;
         const existingUser = await User.findOne({ email })
         if (!existingUser) {
-            res.status(400).json({
+            return res.status(400).json({
                 error: true,
                 message: "User doesn't exist"
             })
@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
         //comparing password
         const isPasswordValid = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordValid) {
-            res.status(401).json({
+            return res.status(401).json({
                 error: true,
                 message: "Invalid credientials"
             })
@@ -69,7 +69,7 @@ const loginUser = async (req, res) => {
             {
                 httpOnly: true,
                 sameSite: "strict",
-                secure: false //in production true
+                secure: false //in production ->true
             }
         )
 
@@ -90,7 +90,7 @@ const refreshAccessToken = async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
 
         if (!refreshToken) {
-            res.status(401).json({
+            return res.status(401).json({
                 error: true,
                 message: " NO Refresh Token found in cookies"
             })

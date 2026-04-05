@@ -16,18 +16,18 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["RESIDENT", "ADMIN"],
+        enum: ["RESIDENT", "ADMIN", "STAFF"],
         default: "RESIDENT"
     },
-    appartment_id: {
+    apartment_id: {
         type: String,
         required: true,
         default: "1B"
     },
     refreshToken: {
         type: String,
-        unique: true,
-        sparse: true
+        // unique: true,
+        // sparse: true
     },
 
 }, { timestamps: true })
